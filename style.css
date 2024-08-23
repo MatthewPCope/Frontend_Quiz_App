@@ -1,13 +1,14 @@
 :root {
-    --dark-gray: #24232C;
-    --gray: #817D92;
-    --whiteish: #E6E5EA;
-    --black:  #18171F;
+    --purple: #A729F5;
+    --dark-gray: #313E51;
+    --gray: #3B4D66;
+    --light-gray:  #626C7F;
 
-    --strong:   #A4FFAF;
-    --medium: #F8CD65;
-    --weak: #FB7C58;
-    --too--weak: #F64A4A
+    --blueish:   #ABC1E1;
+    --off-white: #F4F6FA;
+    --white: #FFFFFF;
+    --green: #26D782;
+    --red:#EE5454
 }
 * {
     margin: 0;
@@ -16,11 +17,11 @@
 }
 html {
     font-size: 62.5%;
-    background-color: var(--black);
+    background-color: var(--off-white);
 }
 body{
     font-family: "Rubik", sans-serif;
-    color: var(--whiteish);
+    color: var(--green);
     display: flex;
     justify-content: center;
     flex-direction: column;
