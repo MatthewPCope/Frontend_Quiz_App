@@ -13,40 +13,28 @@
   <title>Frontend Mentor | Frontend quiz app</title>
 </head>
 <body>
+<!-- Opening Page -->
+  <section id="opening-page" class="active">
+    <h1>Welcome to the Quiz!</h1>
+    <button id="start-button">Start Quiz</button>
+  </section>
 
-  <!-- Quiz menu start -->
+  <!-- Quiz/Game Screen -->
+  <section id="quiz-page" class="hidden">
+    <h2>Question 1</h2>
+    <p>What is the capital of France?</p>
+    <button class="answer">Paris</button>
+    <button class="answer">Rome</button>
+    <button class="answer">Madrid</button>
+    <button class="answer">Berlin</button>
+  </section>
 
-  Welcome to the Frontend Quiz!
-  Pick a subject to get started.
-
-  HTML
-  CSS
-  JavaScript
-  Accessibility
-
-  <!-- Quiz menu end -->
-
-  <!-- Quiz question start -->
-
-  Question <!-- number --> of 10
-
-  A
-  B
-  C
-  D
-
-  Submit answer
-
-  <!-- Quiz question end -->
-
-  <!-- Quiz completed start -->
-
-  Quiz completed
-  You scored...
-
-  <!-- score --> out of 10
-
-  <!-- Quiz completed end -->
+  <!-- Score Screen -->
+  <section id="score-page" class="hidden">
+    <h1>Your Score</h1>
+    <p id="score"></p>
+    <button id="restart-button">Restart Quiz</button>
+  </section>
 
 </body>
 </html>
