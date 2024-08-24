@@ -29,9 +29,18 @@ body{
     width: 100%;
     height: 100vh;
 }
+.container{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
 .hidden {
     display: none;
 }
 .active {
     display: block;
+}
+.buttons{
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
 }
