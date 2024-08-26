@@ -54,14 +54,34 @@ h1{
 }
 .btn, .btn:link, .btn:visited{
     width: 100%;
-    display: inline-block;
     font-size: 2rem;
+    background-color: var(--white);
+    text-align: left;
     font-weight: 600;
-    padding: 1.6rem 3.2rem;
+    padding: 1.6rem;
     border-radius: 9px;
     text-decoration: none;
     transition: all 0.3s;
     border: none;
     cursor: pointer;
     font-family: inherit;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+.html-icon{
+    background-color: #fff2e9;
+    border-radius: 8px;
+}
+.css-icon{
+    background-color: #dffdef;
+    border-radius: 8px;
+}
+.javascript-icon{
+    background-color: #ebf0ff;
+    border-radius: 8px;
+}
+.accessibility-icon{
+    background-color: #f6e6ff;
+    border-radius: 8px;
 }
