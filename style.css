@@ -85,3 +85,18 @@ h1{
     background-color: #f6e6ff;
     border-radius: 8px;
 }
+
+@media(min-width: 48em){
+    body{
+        padding: 10rem;
+    }
+    .container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); 
+    }
+    .two-columns{
+        display: flex;
+        flex-direction: column;
+        gap: 2.4rem;
+    }
+}
