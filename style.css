@@ -3,12 +3,28 @@
     --dark-gray: #313E51;
     --gray: #3B4D66;
     --light-gray:  #626C7F;
-
+    --background-color:#F4F6FA;
     --blueish:   #ABC1E1;
     --off-white: #F4F6FA;
+    --button-color:#FFFFFF;
     --white: #FFFFFF;
+    --text-color:#313E51;
     --green: #26D782;
     --red:#EE5454
+}
+.dark-mode{
+    --purple: #A729F5;
+    --dark-gray: #313E51;
+    --gray: #3B4D66;
+    --light-gray:  #626C7F;
+    --background-color:#3B4D66;
+    --blueish:   #ABC1E1;
+    --off-white: #F4F6FA;
+    --button-color:#626C7F;
+    --text-color:#FFFFFF;
+    --white: #FFFFFF;
+    --green: #26D782;
+    --red:#EE5454;
 }
 * {
     margin: 0;
@@ -17,11 +33,11 @@
 }
 html {
     font-size: 62.5%;
-    background-color: var(--off-white);
 }
 body{
+    background-color: var(--background-color);
     font-family: "Rubik", sans-serif;
-    color: var(--dark-gray);
+    color: var(--text-color);
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -55,19 +71,25 @@ h1{
 .btn, .btn:link, .btn:visited{
     width: 100%;
     font-size: 2rem;
-    background-color: var(--white);
+    background-color: var(--button-color);
     text-align: left;
     font-weight: 600;
     padding: 1.6rem;
     border-radius: 9px;
     text-decoration: none;
-    transition: all 0.3s;
+    /* transition: all 0.3s; */
     border: none;
     cursor: pointer;
     font-family: inherit;
     display: flex;
     align-items: center;
     gap: 2rem;
+    color: inherit;
+}
+.dark-button{
+    position: absolute;
+    top: 1.8rem;
+    right:1.8rem
 }
 .html-icon{
     background-color: #fff2e9;
@@ -98,5 +120,10 @@ h1{
         display: flex;
         flex-direction: column;
         gap: 2.4rem;
+    }
+    .dark-button{
+        position: absolute;
+        top: 8rem;
+        right: 10rem;
     }
 }
