@@ -25,25 +25,21 @@
 document.addEventListener('DOMContentLoaded', function() {
     const toggle = document.getElementById('dark-mode-toggle');
 
+    // Add event listener for dark mode toggle
     toggle.addEventListener('change', function () {
         if (this.checked) {
-            console.log('Dark mode activated');
             document.body.classList.add('dark-mode');
             localStorage.setItem('theme', 'dark');
         } else {
-            console.log('Light mode activated');
             document.body.classList.remove('dark-mode');
             localStorage.setItem('theme', 'light');
         }
     });
 
+    // Check for a saved user preference on page load
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
-        console.log('Applying saved dark mode');
         document.body.classList.add('dark-mode');
         toggle.checked = true;
-    } else {
-        console.log('Applying saved light mode');
-        document.body.classList.remove('dark-mode');
     }
 });
