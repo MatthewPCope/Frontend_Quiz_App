@@ -22,21 +22,23 @@
 //     document.getElementById('opening-page').classList.remove('hidden');
 // }
 
-document.getElementById('theme-toggle').addEventListener('click', function() {
-    document.body.classList.toggle('dark-mode');
+// Wait for the DOM to fully load
+document.addEventListener('DOMContentLoaded', function() {
+    // Add event listener for dark mode toggle
+    document.getElementById('dark-mode-toggle').addEventListener('change', function () {
+        if (this.checked) {
+            document.body.classList.add('dark-mode');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            document.body.classList.remove('dark-mode');
+            localStorage.setItem('theme', 'light');
+        }
+    });
 
-    // Save the user's preference in localStorage
-    if (document.body.classList.contains('dark-mode')) {
-        localStorage.setItem('theme', 'dark');
-    } else {
-        localStorage.setItem('theme', 'light');
-    }
-});
-
-// Check for a saved user preference on page load
-window.addEventListener('load', function() {
+    // Check for a saved user preference on page load
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme && savedTheme === 'dark') {
+    if (savedTheme === 'dark') {
         document.body.classList.add('dark-mode');
+        document.getElementById('dark-mode-toggle').checked = true;
     }
 });
