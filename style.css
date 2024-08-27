@@ -52,41 +52,34 @@ body.dark-mode {
     color: var(--text-color);
 }
 
-/* Container for the toggle and icons */
 .toggle-container {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-/* Icon styles */
 .icon {
     width: 20px;
     height: 20px;
     transition: opacity 0.3s;
 }
 
-/* Hide all dark mode icons by default */
 .icon.dark-mode {
     display: none;
 }
 
-/* Show dark mode icons when dark mode is enabled */
 body.dark-mode .icon.dark-mode {
     display: inline;
 }
 
-/* Hide light mode icons when dark mode is enabled */
 body.dark-mode .icon.light-mode {
     display: none;
 }
 
-/* Hide the checkbox */
 .toggle-switch input[type="checkbox"] {
     display: none;
 }
 
-/* Style for the switch */
 .switch {
     width: 50px;
     height: 25px;
@@ -98,27 +91,26 @@ body.dark-mode .icon.light-mode {
     transition: background-color 0.3s;
 }
 
-/* Circle inside the switch */
 .switch::after {
     content: '';
     position: absolute;
     width: 21px;
     height: 21px;
-    background-color: #ffffff;
+    background-color: var(--white);
     border-radius: 50%;
     top: 2px;
     left: 2px;
     transition: transform 0.3s, background-color 0.3s;
 }
 
-/* Switch on - move the circle and change background */
 input[type="checkbox"]:checked + .switch {
-    background-color: #8b00ff;
+    background-color: var(--purple);
 }
 
 input[type="checkbox"]:checked + .switch::after {
     transform: translateX(25px);
 }
+
 .container{
     display: flex;
     flex-direction: column;
