@@ -171,6 +171,10 @@ h1{
     gap: 2rem;
     color: inherit;
 }
+.btn:hover, 
+.btn:active{
+    border: 1px solid var(--purple)
+}
 .dark-button{
     position: absolute;
     top: 1.8rem;
