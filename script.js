@@ -1,3 +1,97 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const categoryButtons = document.querySelectorAll('.btn');
+    const quizPage = document.getElementById('quiz-page');
+    const openingPage = document.getElementById('opening-page');
+    const quizTitle = quizPage.querySelector('h2');
+    const quizQuestion = quizPage.querySelector('p');
+    const answerButtons = quizPage.querySelectorAll('.answer');
+    const submitButton = document.getElementById('submit-answer');
+
+    let currentQuestionIndex = 0;
+    let currentQuiz = {};
+    let selectedAnswer = '';
+
+    // Load the quiz data
+    fetch('data.json')
+        .then(response => response.json())
+        .then(data => {
+            const quizzes = data.quizzes;
+
+            // Add click event listeners to each category button
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const category = this.textContent.trim();
+                    currentQuiz = quizzes.find(quiz => quiz.title === category);
+                    if (currentQuiz) {
+                        // Reset question index and load the first question
+                        currentQuestionIndex = 0; 
+                        loadQuestion();
+
+                        // Hide the opening page and show the quiz page
+                        openingPage.classList.add('hidden');
+                        quizPage.classList.remove('hidden');
+                    }
+                });
+            });
+        });
+
+    // Function to load a question
+    function loadQuestion() {
+        const questionObj = currentQuiz.questions[currentQuestionIndex];
+        const totalQuestions = currentQuiz.questions.length;
+
+        // Update the title with current question number and total questions
+        quizTitle.textContent = `Question ${currentQuestionIndex + 1} of ${totalQuestions}`;
+        quizQuestion.textContent = questionObj.question;
+
+        // Populate the answers
+        answerButtons.forEach((button, index) => {
+            button.textContent = questionObj.options[index];
+            button.classList.remove('selected');
+            button.onclick = () => {
+                answerButtons.forEach(btn => btn.classList.remove('selected'));
+                button.classList.add('selected');
+                selectedAnswer = questionObj.options[index];
+            };
+        });
+    }
+
+    // Function to check the answer when submitting
+    submitButton.addEventListener('click', function() {
+        if (selectedAnswer) {
+            const questionObj = currentQuiz.questions[currentQuestionIndex];
+            checkAnswer(selectedAnswer, questionObj.answer);
+        }
+    });
+
+    // Function to check the answer
+    function checkAnswer(selected, correct) {
+        if (selected === correct) {
+            alert('Correct!');
+        } else {
+            alert('Wrong answer.');
+        }
+
+        // Load the next question or show the score
+        currentQuestionIndex++;
+        if (currentQuestionIndex < currentQuiz.questions.length) {
+            loadQuestion();
+        } else {
+            showScore();
+        }
+    }
+
+    // Function to show the score
+    function showScore() {
+        quizPage.classList.add('hidden');
+        const scorePage = document.getElementById('score-page');
+        scorePage.classList.remove('hidden');
+        document.getElementById('score').textContent = `Your score: ${currentQuestionIndex} / ${currentQuiz.questions.length}`;
+    }
+});
+
+
+
 // document.getElementById('start-button').addEventListener('click', startQuiz);
 // document.getElementById('restart-button').addEventListener('click', restartQuiz);
 
