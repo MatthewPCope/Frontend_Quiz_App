@@ -2,14 +2,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const categoryButtons = document.querySelectorAll('.btn');
     const quizPage = document.getElementById('quiz-page');
     const openingPage = document.getElementById('opening-page');
+    const scorePage = document.getElementById('score-page');
     const quizTitle = quizPage.querySelector('h2');
     const quizQuestion = quizPage.querySelector('p');
     const answerButtons = quizPage.querySelectorAll('.answer-btn');
     const submitButton = document.getElementById('submit-answer');
+    const restartButton = document.getElementById('restart-button');
 
     let currentQuestionIndex = 0;
     let currentQuiz = {};
     let selectedAnswer = null;
+    let score = 0
 
     // Load the quiz data
     fetch('data.json')
@@ -25,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (currentQuiz) {
                         // Reset question index and load the first question
                         currentQuestionIndex = 0; 
+                        score = 0
                         loadQuestion();
 
                         // Hide the opening page and show the quiz page
@@ -66,34 +70,30 @@ document.addEventListener('DOMContentLoaded', function() {
     submitButton.addEventListener('click', function() {
         if (selectedAnswer) {
             const questionObj = currentQuiz.questions[currentQuestionIndex];
-            checkAnswer(selectedAnswer, questionObj.answer);
+            if (selectedAnswer === questionObj.answer) {
+                score++; // Increase the score if the answer is correct
+            }
         }
-    });
-
-    // Function to check the answer
-    function checkAnswer(selected, correct) {
-        if (selected === correct) {
-            alert('Correct!');
-        } else {
-            alert('Wrong answer.');
-        }
-
-        // Load the next question or show the score
         currentQuestionIndex++;
         if (currentQuestionIndex < currentQuiz.questions.length) {
             loadQuestion();
         } else {
             showScore();
         }
-    }
+    });
+
 
     // Function to show the score
     function showScore() {
         quizPage.classList.add('hidden');
         const scorePage = document.getElementById('score-page');
         scorePage.classList.remove('hidden');
-        document.getElementById('score').textContent = `Your score: ${currentQuestionIndex} / ${currentQuiz.questions.length}`;
+        document.getElementById('score').textContent = `Your score: ${score} / ${currentQuiz.questions.length}`;
     }
+    restartButton.addEventListener('click', function() {
+        scorePage.classList.add('hidden');
+        openingPage.classList.remove('hidden');
+    });
 });
 
 
