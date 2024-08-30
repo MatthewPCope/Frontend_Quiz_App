@@ -99,6 +99,9 @@ body:not(.dark-mode) .icon.dark-mode {
 .toggle-switch input[type="checkbox"] {
     display: none;
 }
+.selected {
+    border: 2px solid var(--purple); /* Adjust the styles as needed */
+}
 
 .switch {
     width: 50px;
@@ -183,6 +186,28 @@ h2{
 .btn:active{
     border-color: var(--purple);
 }
+.answer-btn, .answer-btn:link, .btn:visited{
+    width: 100%;
+    font-size: 2rem;
+    background-color: var(--button-color);
+    text-align: left;
+    font-weight: 600;
+    padding: 1.6rem;
+    border-radius: 9px;
+    text-decoration: none;
+    transition: all 0.3s;
+    border: 2px solid transparent;
+    cursor: pointer;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    color: inherit;
+}
+.answer-btn:hover, 
+.answer-btn:active{
+    border-color: var(--purple);
+}
 .btn-submit {
     width: 100%;
     background-color: var(--purple);
@@ -195,6 +220,7 @@ h2{
     border: 2px solid transparent;
     cursor: pointer;
     margin-top: 20px;
+    border-radius: 10px;
 }
 
 .btn-submit:hover {

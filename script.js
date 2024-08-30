@@ -4,19 +4,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const openingPage = document.getElementById('opening-page');
     const quizTitle = quizPage.querySelector('h2');
     const quizQuestion = quizPage.querySelector('p');
-    const answerButtons = quizPage.querySelectorAll('.answer');
+    const answerButtons = quizPage.querySelectorAll('.answer-btn');
     const submitButton = document.getElementById('submit-answer');
 
     let currentQuestionIndex = 0;
     let currentQuiz = {};
-    let selectedAnswer = '';
+    let selectedAnswer = null;
 
     // Load the quiz data
     fetch('data.json')
         .then(response => response.json())
         .then(data => {
             const quizzes = data.quizzes;
-
+            
             // Add click event listeners to each category button
             categoryButtons.forEach(button => {
                 button.addEventListener('click', function() {
@@ -30,6 +30,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         // Hide the opening page and show the quiz page
                         openingPage.classList.add('hidden');
                         quizPage.classList.remove('hidden');
+                    }else{
+                        console.error(`No quiz found for category: ${category}`);
                     }
                 });
             });
@@ -40,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const questionObj = currentQuiz.questions[currentQuestionIndex];
         const totalQuestions = currentQuiz.questions.length;
 
-        // Update the title with current question number and total questions
+        // Update the title with the current question number and total questions
         quizTitle.textContent = `Question ${currentQuestionIndex + 1} of ${totalQuestions}`;
         quizQuestion.textContent = questionObj.question;
 
@@ -54,6 +56,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 selectedAnswer = questionObj.options[index];
             };
         });
+
+        // Reset the selected answer
+        selectedAnswer = null;
+        submitButton.classList.remove('hidden');
     }
 
     // Function to check the answer when submitting
