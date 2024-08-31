@@ -164,7 +164,8 @@ h2{
     flex-direction: column;
     gap: 2.4rem;
 }
-.btn, .btn:link, .btn:visited{
+.btn, .btn:link, .btn:visited,
+.answer-btn, .answer-btn:link, .answer-btn:visited{
     width: 100%;
     font-size: 2rem;
     background-color: var(--button-color);
@@ -183,32 +184,14 @@ h2{
     color: inherit;
 }
 .btn:hover, 
-.btn:active{
-    border-color: var(--purple);
-}
-.answer-btn, .answer-btn:link, .btn:visited{
-    width: 100%;
-    font-size: 2rem;
-    background-color: var(--button-color);
-    text-align: left;
-    font-weight: 600;
-    padding: 1.6rem;
-    border-radius: 9px;
-    text-decoration: none;
-    transition: all 0.3s;
-    border: 2px solid transparent;
-    cursor: pointer;
-    font-family: inherit;
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    color: inherit;
-}
-.answer-btn:hover, 
+.btn:active,
+.answer-btn:hover,
 .answer-btn:active{
     border-color: var(--purple);
 }
-.btn-submit {
+
+
+.btn-submit, .restart-btn {
     width: 100%;
     background-color: var(--purple);
     color: var(--text-color);
@@ -223,7 +206,8 @@ h2{
     border-radius: 10px;
 }
 
-.btn-submit:hover {
+.btn-submit:hover,
+.restart-btn:hover {
     border-color: var(--hover-border-color);
 }
 .dark-button{
