@@ -86,9 +86,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to show the score
     function showScore() {
         quizPage.classList.add('hidden');
-        const scorePage = document.getElementById('score-page');
         scorePage.classList.remove('hidden');
-        document.getElementById('score').textContent = `Your score: ${score} / ${currentQuiz.questions.length}`;
+        const scoreElemnet = document.getElementById('score')
+        scoreElemnet.innerHTML = `<span class="score-number">${score}</span><span class="score-text"> out of ${currentQuiz.questions.length}</span>`;
     }
     restartButton.addEventListener('click', function() {
         scorePage.classList.add('hidden');

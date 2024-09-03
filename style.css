@@ -243,10 +243,30 @@ h2{
     border-radius: 8px;
 }
 .score-card{
-    background-color: var(--button-color);
+    background-color: var(--gray);
     border-radius: 10px;
+    text-align: center;
+}
+#score {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }
 
+.score-number {
+    font-size: 6rem; /* Make the score number large */
+    font-weight: bold;
+    color: var(--strong); /* Adjust this color based on your theme */
+    margin-bottom: 1.8rem;
+}
+
+.score-text {
+    font-size: 1.5rem; /* Make the text smaller */
+    color: var(--blueish); /* Adjust this color based on your theme */
+    margin-bottom: 3.6rem;
+}
 
 
 @media(min-width: 48em){
