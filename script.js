@@ -64,6 +64,24 @@ document.addEventListener('DOMContentLoaded', function() {
         // Reset the selected answer
         selectedAnswer = null;
         submitButton.classList.remove('hidden');
+        // Update the top-left icon and category
+        const topCategoryIcon = document.getElementById('top-category-icon');
+        const topCategoryName = document.getElementById('top-category-name');
+        
+        topCategoryIcon.src = currentQuiz.icon;
+        topCategoryName.textContent = currentQuiz.title;
+
+        // Apply the dynamic background class for the icon
+        topCategoryIcon.classList.remove('html-icon', 'css-icon', 'javascript-icon', 'accessibility-icon');
+        if (currentQuiz.title === 'HTML') {
+            topCategoryIcon.classList.add('html-icon');
+        } else if (currentQuiz.title === 'CSS') {
+            topCategoryIcon.classList.add('css-icon');
+        } else if (currentQuiz.title === 'Javascript') {
+            topCategoryIcon.classList.add('javascript-icon');
+        } else if (currentQuiz.title === 'Accessibility') {
+            topCategoryIcon.classList.add('accessibility-icon');
+        }
     }
 
     // Function to check the answer when submitting

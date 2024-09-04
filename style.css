@@ -259,7 +259,8 @@ h2{
     height: 100%;
 }
 .score-category {
-    background-color: var(--gray);
+    background-color: var(--background-color);
+    font-size: 1.6rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -270,7 +271,8 @@ h2{
 
 .score-category img {
     width: 4rem; /* Adjust the size of the icon as needed */
-    height: auto
+    height: auto;
+    align-items: center;
 }
 .score-number {
     font-size: 6rem; /* Make the score number large */
@@ -284,10 +286,50 @@ h2{
     color: var(--blueish); /* Adjust this color based on your theme */
     margin-bottom: 3.6rem;
 }
-#category-name {
-    font-size: 1.5rem; /* Adjust to your design */
-    margin-top: 1.8rem;
-    font-weight: bold;
+
+
+.top-left-container {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    display: flex;
+    align-items: center;
+}
+.top-category {
+    background-color: var(--background-color);
+    font-size: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Space between the icon and the text */
+}
+.top-category img {
+    width: 4rem; /* Adjust the size of the icon as needed */
+    height: auto;
+    align-items: center;
+}
+
+
+
+/* Adjustments to the icon styling for the dynamic category icon */
+.top-left-container img.html-icon {
+    background-color: #fff2e9;
+    border-radius: 8px;
+}
+
+.top-left-container img.css-icon {
+    background-color: #dffdef;
+    border-radius: 8px;
+}
+
+.top-left-container img.javascript-icon {
+    background-color: #ebf0ff;
+    border-radius: 8px;
+}
+
+.top-left-container img.accessibility-icon {
+    background-color: #f6e6ff;
+    border-radius: 8px;
 }
 
 @media(min-width: 48em){
