@@ -86,10 +86,35 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to show the score
     function showScore() {
         quizPage.classList.add('hidden');
+        const scorePage = document.getElementById('score-page');
         scorePage.classList.remove('hidden');
-        const scoreElemnet = document.getElementById('score')
-        scoreElemnet.innerHTML = `<span class="score-number">${score}</span><span class="score-text"> out of ${currentQuiz.questions.length}</span>`;
+        
+        // Set the score display
+        const scoreNumber = document.querySelector('.score-number');
+        const scoreText = document.querySelector('.score-text');
+        scoreNumber.textContent = `${score}`; // or use the actual score variable
+        scoreText.textContent = ` out of ${currentQuiz.questions.length}`;
+    
+        // Dynamically set category icon and name
+        const categoryIcon = document.getElementById('category-icon');
+        const categoryName = document.getElementById('category-name');
+        
+        categoryIcon.src = currentQuiz.icon;  // Assuming the JSON data includes the icon property
+        categoryName.textContent = currentQuiz.title;  // This will be the category name, like "HTML" or "CSS"
+        categoryIcon.classList.remove('html-icon', 'css-icon', 'javascript-icon', 'accessibility-icon');
+
+    // Add background color class based on category
+    if (currentQuiz.title === 'HTML') {
+        categoryIcon.classList.add('html-icon');
+    } else if (currentQuiz.title === 'CSS') {
+        categoryIcon.classList.add('css-icon');
+    } else if (currentQuiz.title === 'Javascript') {
+        categoryIcon.classList.add('javascript-icon');
+    } else if (currentQuiz.title === 'Accessibility') {
+        categoryIcon.classList.add('accessibility-icon');
     }
+    }
+    
     restartButton.addEventListener('click', function() {
         scorePage.classList.add('hidden');
         openingPage.classList.remove('hidden');
