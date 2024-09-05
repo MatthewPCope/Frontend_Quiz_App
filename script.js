@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const quizPage = document.getElementById('quiz-page');
     const openingPage = document.getElementById('opening-page');
     const scorePage = document.getElementById('score-page');
+    const categoryContainer = document.querySelector('.top-left-container');
     const quizTitle = quizPage.querySelector('h2');
     const quizQuestion = quizPage.querySelector('p');
     const answerButtons = quizPage.querySelectorAll('.answer-btn');
@@ -30,6 +31,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         currentQuestionIndex = 0; 
                         score = 0
                         loadQuestion();
+                        const categoryIcon = document.getElementById('category-icon');
+                        const categoryName = document.getElementById('category-name');
+                        categoryIcon.src = currentQuiz.icon;
+                        categoryName.textContent = currentQuiz.title;
+
+                        // Show the category container and quiz page
+                        categoryContainer.style.display = 'flex'; //
 
                         // Hide the opening page and show the quiz page
                         openingPage.classList.add('hidden');

@@ -1,6 +1,7 @@
 :root {
     --background-color:#F4F6FA;
     --button-color:#FFFFFF;
+    --score-card: #FFFFFF;
     --text-color:#313E51;
 
     --purple: #A729F5;
@@ -15,7 +16,8 @@
     --red:#EE5454
 }
 .dark-mode{
-    --background-color:#3B4D66;
+    --background-color:#313E51;
+    --score-card:#3B4D66;
     --button-color:#626C7F;
     --text-color:#FFFFFF;
 
@@ -144,7 +146,9 @@ input[type="checkbox"]:checked + .switch::after {
 .visible {
     display: block;
 }
-
+#quiz-page{
+    margin-top: 10rem;
+}
 
 h1{
     font-size: 4.8rem;
@@ -243,13 +247,14 @@ h2{
     border-radius: 8px;
 }
 .score-card{
-    background-color: var(--background-color);
+    background-color: var(--score-card);
     border-radius: 10px;
     display: flex;  
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0 , 0.1);
 }
 #score {
     display: flex;
@@ -259,7 +264,7 @@ h2{
     height: 100%;
 }
 .score-category {
-    background-color: var(--background-color);
+    background-color: var(--score-card);
     font-size: 1.6rem;
     display: flex;
     align-items: center;
@@ -292,7 +297,7 @@ h2{
     position: absolute;
     top: 2rem;
     left: 2rem;
-    display: flex;
+    display: none;
     align-items: center;
 }
 .top-category {
@@ -332,25 +337,34 @@ h2{
     border-radius: 8px;
 }
 
-@media(min-width: 48em){
+@media(min-width: 49em){
     body{
         padding: 10rem;
         background-image: url('assets/images/pattern-background-tablet-light.svg');
         background-position: center;
         background-size: cover;
     }
+    .top-left-container {
+        position: absolute;
+        top: 10rem;
+        left: 10rem;
+        display: none;
+        align-items: center;
+    }
+    
     .container {
         display: grid;
         grid-template-columns: repeat(2, 1fr); 
+        column-gap: 4rem;
     }
     .two-columns{
         display: flex;
         flex-direction: column;
-        gap: 2.4rem;
+        gap: 2rem;
     }
     .dark-button{
         position: absolute;
-        top: 8rem;
+        top: 10rem;
         right: 10rem;
     }
     .question{
@@ -360,6 +374,9 @@ h2{
         position: absolute;
         top:8rem;
         left: 10rem;
+    }
+    .restart-btn-grid{
+        grid-column: 2 / 3;
     }
     .dark-mode{
         background-image: url('assets/images/pattern-background-tablet-dark.svg');
