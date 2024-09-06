@@ -149,6 +149,13 @@ input[type="checkbox"]:checked + .switch::after {
 #quiz-page{
     margin-top: 10rem;
 }
+.correct {
+    border: 2px solid var(--green); /* Green for correct answer */
+}
+
+.wrong {
+    border: 2px solid var(--red); /* Red for wrong answer */
+}
 
 h1{
     font-size: 4.8rem;

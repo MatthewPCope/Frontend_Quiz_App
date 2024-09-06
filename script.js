@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const quizPage = document.getElementById('quiz-page');
     const openingPage = document.getElementById('opening-page');
     const scorePage = document.getElementById('score-page');
-    const categoryContainer = document.querySelector('.top-left-container');
+    const categoryContainer = document.querySelector('.top-left-container')
     const quizTitle = quizPage.querySelector('h2');
     const quizQuestion = quizPage.querySelector('p');
     const answerButtons = quizPage.querySelectorAll('.answer-btn');
@@ -92,21 +92,34 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Function to check the answer when submitting
-    submitButton.addEventListener('click', function() {
+     // Function to check the answer when submitting
+     submitButton.addEventListener('click', function() {
+        const questionObj = currentQuiz.questions[currentQuestionIndex];
+
         if (selectedAnswer) {
-            const questionObj = currentQuiz.questions[currentQuestionIndex];
-            if (selectedAnswer === questionObj.answer) {
-                score++; // Increase the score if the answer is correct
+            if (submitButton.textContent === 'Submit Answer') {
+                // Check the answer
+                if (selectedAnswer === questionObj.answer) {
+                    document.querySelector('.selected').classList.add('correct'); // Green for correct
+                    score++; // Increase score if correct
+                } else {
+                    document.querySelector('.selected').classList.add('wrong'); // Red for wrong
+                }
+
+                // Change button text to "Next Question"
+                submitButton.textContent = 'Next Question';
+            } else {
+                // Load the next question or show the score
+                currentQuestionIndex++;
+                if (currentQuestionIndex < currentQuiz.questions.length) {
+                    loadQuestion();
+                } else {
+                    showScore();
+                }
             }
         }
-        currentQuestionIndex++;
-        if (currentQuestionIndex < currentQuiz.questions.length) {
-            loadQuestion();
-        } else {
-            showScore();
-        }
     });
+
 
 
     // Function to show the score
