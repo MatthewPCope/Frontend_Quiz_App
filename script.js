@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function loadQuestion() {
         const questionObj = currentQuiz.questions[currentQuestionIndex];
         const totalQuestions = currentQuiz.questions.length;
+        const answerLetters = ['A', 'B', 'C', 'D'];
 
         // Update the title with the current question number and total questions
         quizTitle.textContent = `Question ${currentQuestionIndex + 1} of ${totalQuestions}`;
@@ -60,8 +61,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Populate the answers
         answerButtons.forEach((button, index) => {
-            button.textContent = questionObj.options[index];
-            button.classList.remove('selected');
+            button.innerHTML = `
+                <span class="letter-box">${answerLetters[index]}</span>
+                <span class="answer-text">${questionObj.options[index]}</span>
+            `;
+            button.classList.remove('selected', 'correct', 'wrong'); // Reset styles
             button.onclick = () => {
                 answerButtons.forEach(btn => btn.classList.remove('selected'));
                 button.classList.add('selected');
@@ -93,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
      // Function to check the answer when submitting
-     submitButton.addEventListener('click', function() {
+        submitButton.addEventListener('click', function() {
         const questionObj = currentQuiz.questions[currentQuestionIndex];
 
         if (selectedAnswer) {

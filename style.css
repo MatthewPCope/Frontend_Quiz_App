@@ -206,7 +206,36 @@ h2{
 .answer-btn:active{
     border-color: var(--purple);
 }
+.answer-btn{
+    transition: background-color 0.3s, border-color 0.3s;
+}
+.letter-box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    margin-right: 1.6rem;
+    background-color: #e0e0e0; /* Light gray background for letter box */
+    border-radius: 4px;
+    font-weight: bold;
+}
+.answer-btn.selected .letter-box {
+    background-color: var(--purple); /* Purple for selected answer */
+    color: white;
+}
 
+/* Correct answer background (green) */
+.answer-btn.correct .letter-box {
+    background-color: var(--green);
+    color: white;
+}
+
+/* Wrong answer background (red) */
+.answer-btn.wrong .letter-box {
+    background-color: var(--red);
+    color: white;
+}
 
 .btn-submit, .restart-btn {
     width: 100%;
