@@ -207,7 +207,7 @@ h2{
     border-color: var(--purple);
 }
 
-.answer-btn, .answer-btn:link, .answer-btn:visited{
+.answer-btn{
     width: 100%;
     font-size: 2rem;
     background-color: var(--button-color);
@@ -221,7 +221,7 @@ h2{
     cursor: pointer;
     font-family: inherit;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     position: relative;
     transition: background-color 0.3s, border-color 0.3s;
@@ -257,6 +257,9 @@ h2{
 .answer-text {
     flex-grow: 1; /* Ensure the text takes up available space */
     text-align: left;
+    display: inline-block;
+    color: var(--text-color);
+    margin-left: 1rem;
 }
 .answer-btn.selected .letter-box {
     background-color: var(--purple); /* Purple for selected answer */
@@ -300,6 +303,24 @@ h2{
 .restart-btn:hover {
     border-color: var(--hover-border-color);
 }
+.error-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-color);
+    font-size: 1.6rem;
+    margin-top: 1rem;
+    gap: 10px; /* Space between the icon and text */
+}
+
+.error-message img {
+    width: 24px;
+    height: 24px;
+}
+.hidden-error{
+    display:none
+}
+
 .dark-button{
     position: absolute;
     top: 1.8rem;

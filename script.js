@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const scorePage = document.getElementById('score-page');
     const categoryContainer = document.querySelector('.top-left-container')
     const quizTitle = quizPage.querySelector('h2');
-    const quizQuestion = quizPage.querySelector('p');
+    const quizQuestion = quizPage.querySelector('.question');
     const answerButtons = quizPage.querySelectorAll('.answer-btn');
     const submitButton = document.getElementById('submit-answer');
     const restartButton = document.getElementById('restart-button');
@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentQuiz = {};
     let selectedAnswer = null;
     let score = 0
+    let answering = true;
 
     // Load the quiz data
     fetch('data.json')
@@ -29,8 +30,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (currentQuiz) {
                         // Reset question index and load the first question
                         currentQuestionIndex = 0; 
+                        answering = true;
                         score = 0
                         loadQuestion();
+
                         const categoryIcon = document.getElementById('category-icon');
                         const categoryName = document.getElementById('category-name');
                         categoryIcon.src = currentQuiz.icon;
@@ -49,82 +52,105 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
-    // Function to load a question
-    function loadQuestion() {
-        const questionObj = currentQuiz.questions[currentQuestionIndex];
-        const totalQuestions = currentQuiz.questions.length;
-        const answerLetters = ['A', 'B', 'C', 'D'];
+// Function to load a question
+function loadQuestion() {
+    const questionObj = currentQuiz.questions[currentQuestionIndex];
+    const totalQuestions = currentQuiz.questions.length;
+    const answerLetters = ['A', 'B', 'C', 'D'];
+    const errorMessage = document.getElementById('error-message');
+        errorMessage.classList.add('hidden-error');
 
-        // Update the title with the current question number and total questions
-        quizTitle.textContent = `Question ${currentQuestionIndex + 1} of ${totalQuestions}`;
-        quizQuestion.textContent = questionObj.question;
+    // Update the title with the current question number and total questions
+    quizTitle.textContent = `Question ${currentQuestionIndex + 1} of ${totalQuestions}`;
+    quizQuestion.textContent = questionObj.question;
 
-        // Populate the answers
-        answerButtons.forEach((button, index) => {
-            button.innerHTML = `
-                <span class="letter-box">${answerLetters[index]}</span>
-                <span class="answer-text">${questionObj.options[index]}</span>
-            `;
-            button.classList.remove('selected', 'correct', 'wrong'); // Reset styles
-            button.onclick = () => {
-                answerButtons.forEach(btn => btn.classList.remove('selected'));
-                button.classList.add('selected');
-                selectedAnswer = questionObj.options[index];
-            };
-        });
+    // Ensure the buttons are fully reset before populating
+    answerButtons.forEach((button, index) => {
+        // Ensure the button is reset and ready to display the next set of answers
+        button.innerHTML = `
+            <span class="letter-box">${answerLetters[index]}</span>
+            <span class="answer-text">${questionObj.options[index]}</span>
+        `;
+        button.classList.remove('selected', 'correct', 'wrong'); // Reset styles
+        button.onclick = () => {
+            // Allow only one selection at a time
+            answerButtons.forEach(btn => btn.classList.remove('selected'));
+            button.classList.add('selected');
+            selectedAnswer = questionObj.options[index];
+        };
+    });
 
-        // Reset the selected answer
-        selectedAnswer = null;
-        submitButton.classList.remove('hidden');
-        // Update the top-left icon and category
-        const topCategoryIcon = document.getElementById('top-category-icon');
-        const topCategoryName = document.getElementById('top-category-name');
-        
-        topCategoryIcon.src = currentQuiz.icon;
-        topCategoryName.textContent = currentQuiz.title;
+    // Reset the selected answer
+    selectedAnswer = null;
+    submitButton.textContent = "Submit Answer"; // Reset button text
+    submitButton.classList.remove('hidden');
+    answering = true; 
 
-        // Apply the dynamic background class for the icon
-        topCategoryIcon.classList.remove('html-icon', 'css-icon', 'javascript-icon', 'accessibility-icon');
-        if (currentQuiz.title === 'HTML') {
-            topCategoryIcon.classList.add('html-icon');
-        } else if (currentQuiz.title === 'CSS') {
-            topCategoryIcon.classList.add('css-icon');
-        } else if (currentQuiz.title === 'Javascript') {
-            topCategoryIcon.classList.add('javascript-icon');
-        } else if (currentQuiz.title === 'Accessibility') {
-            topCategoryIcon.classList.add('accessibility-icon');
-        }
+    // Update the top-left icon and category
+    const topCategoryIcon = document.getElementById('top-category-icon');
+    const topCategoryName = document.getElementById('top-category-name');
+    
+    topCategoryIcon.src = currentQuiz.icon;
+    topCategoryName.textContent = currentQuiz.title;
+
+    // Apply the dynamic background class for the icon
+    topCategoryIcon.classList.remove('html-icon', 'css-icon', 'javascript-icon', 'accessibility-icon');
+    if (currentQuiz.title === 'HTML') {
+        topCategoryIcon.classList.add('html-icon');
+    } else if (currentQuiz.title === 'CSS') {
+        topCategoryIcon.classList.add('css-icon');
+    } else if (currentQuiz.title === 'JavaScript') {
+        topCategoryIcon.classList.add('javascript-icon');
+    } else if (currentQuiz.title === 'Accessibility') {
+        topCategoryIcon.classList.add('accessibility-icon');
     }
+}
 
-     // Function to check the answer when submitting
-        submitButton.addEventListener('click', function() {
+// Function to handle answer submission and moving to the next question
+submitButton.addEventListener('click', function() {
+    const errorMessage = document.getElementById('error-message');
+
+    // Check if no answer has been selected
+    if (!selectedAnswer) {
+        // Show the error message if no answer is selected
+        errorMessage.classList.remove('hidden-error');
+    } else {
+        // Hide the error message once an answer is selected
+        errorMessage.classList.add('hidden-error');
+        
         const questionObj = currentQuiz.questions[currentQuestionIndex];
+        const selectedButton = document.querySelector('.selected');
 
-        if (selectedAnswer) {
-            if (submitButton.textContent === 'Submit Answer') {
-                // Check the answer
-                if (selectedAnswer === questionObj.answer) {
-                    document.querySelector('.selected').classList.add('correct'); // Green for correct
-                    score++; // Increase score if correct
-                    button.insertAdjacentHTML('beforeend', '<img class="icon" />');
-                } else {
-                    document.querySelector('.selected').classList.add('wrong'); // Red for wrong
-                    button.insertAdjacentHTML('beforeend', '<img class="icon" />');
-                }
-                
-                // Change button text to "Next Question"
-                submitButton.textContent = 'Next Question';
+        if (submitButton.textContent === 'Submit Answer') {
+            // Check if the selected answer is correct
+            if (selectedAnswer === questionObj.answer) {
+                selectedButton.classList.add('correct'); // Green for correct
+                score++; // Increase score if correct
             } else {
-                // Load the next question or show the score
-                currentQuestionIndex++;
-                if (currentQuestionIndex < currentQuiz.questions.length) {
-                    loadQuestion();
-                } else {
-                    showScore();
-                }
+                selectedButton.classList.add('wrong'); // Red for wrong
+            }
+            
+            // Insert correct or incorrect icon based on the answer
+            const icon = selectedAnswer === questionObj.answer 
+                ? 'assets/images/icon-correct.svg' 
+                : 'assets/images/icon-incorrect.svg';
+            selectedButton.insertAdjacentHTML('beforeend', `<img class="icon" src="${icon}" />`);
+
+            // Change button text to "Next Question"
+            submitButton.textContent = 'Next Question';
+            answering = false;
+        } else {
+            // Move to the next question or show the score if no more questions
+            currentQuestionIndex++;
+            if (currentQuestionIndex < currentQuiz.questions.length) {
+                loadQuestion(); // Load the next question
+            } else {
+                showScore(); // Show the score if quiz is finished
             }
         }
-    });
+    }
+});
+
 
 
 
