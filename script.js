@@ -106,10 +106,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (selectedAnswer === questionObj.answer) {
                     document.querySelector('.selected').classList.add('correct'); // Green for correct
                     score++; // Increase score if correct
+                    button.insertAdjacentHTML('beforeend', '<img class="icon" />');
                 } else {
                     document.querySelector('.selected').classList.add('wrong'); // Red for wrong
+                    button.insertAdjacentHTML('beforeend', '<img class="icon" />');
                 }
-
+                
                 // Change button text to "Next Question"
                 submitButton.textContent = 'Next Question';
             } else {

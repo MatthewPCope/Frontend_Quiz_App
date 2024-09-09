@@ -206,20 +206,57 @@ h2{
 .answer-btn:active{
     border-color: var(--purple);
 }
-.answer-btn{
+
+.answer-btn, .answer-btn:link, .answer-btn:visited{
+    width: 100%;
+    font-size: 2rem;
+    background-color: var(--button-color);
+    text-align: left;
+    font-weight: 600;
+    padding: 1.6rem;
+    border-radius: 9px;
+    text-decoration: none;
+    transition: all 0.3s;
+    border: 2px solid transparent;
+    cursor: pointer;
+    font-family: inherit;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
     transition: background-color 0.3s, border-color 0.3s;
+    gap: 2rem;
+    color: inherit;
+}
+/* Correct and wrong icons positioned on the right side */
+.answer-btn .icon {
+    width: 24px;
+    height: 24px;
+    margin-left: 1rem;
+}
+.answer-btn.correct .icon {
+    content: url('assets/images/icon-correct.svg'); /* Correct answer icon */
+}
+
+.answer-btn.wrong .icon {
+    content: url('assets/images/icon-incorrect.svg'); /* Wrong answer icon */
 }
 .letter-box{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: inline-block;
     width: 3rem;
     height: 3rem;
+    text-align: center;
+    line-height: 3rem;
     margin-right: 1.6rem;
+    transition: background-color 0.3s ease;
     color: var(--light-gray);
     background-color: var(--off-white); /* Light gray background for letter box */
     border-radius: 4px;
     font-weight: bold;
+}
+.answer-text {
+    flex-grow: 1; /* Ensure the text takes up available space */
+    text-align: left;
 }
 .answer-btn.selected .letter-box {
     background-color: var(--purple); /* Purple for selected answer */
