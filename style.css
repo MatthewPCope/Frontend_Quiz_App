@@ -216,13 +216,17 @@ h2{
     width: 3rem;
     height: 3rem;
     margin-right: 1.6rem;
-    background-color: #e0e0e0; /* Light gray background for letter box */
+    color: var(--light-gray);
+    background-color: var(--off-white); /* Light gray background for letter box */
     border-radius: 4px;
     font-weight: bold;
 }
 .answer-btn.selected .letter-box {
     background-color: var(--purple); /* Purple for selected answer */
     color: white;
+}
+.answer-btn.correct{
+    border: 2px solid var(--green);
 }
 
 /* Correct answer background (green) */
@@ -235,6 +239,9 @@ h2{
 .answer-btn.wrong .letter-box {
     background-color: var(--red);
     color: white;
+}
+.answer-btn.wrong{
+    border: 2px solid var(--red);
 }
 
 .btn-submit, .restart-btn {
