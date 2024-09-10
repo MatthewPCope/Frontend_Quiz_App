@@ -132,20 +132,17 @@ submitButton.addEventListener('click', function() {
             
             if (selectedAnswer === questionObj.answer) {
                 selectedButton.classList.add('correct');
+                selectedButton.insertAdjacentHTML('beforeend', `<img class="icon" src="assets/images/icon-correct.svg" />`);
                 score++;
             } else {
                 selectedButton.classList.add('wrong');
-            }
-            
-            
-            const icon = selectedAnswer === questionObj.answer 
-                ? 'assets/images/icon-correct.svg' 
-                : 'assets/images/icon-incorrect.svg';
-            selectedButton.insertAdjacentHTML('beforeend', `<img class="icon" src="${icon}" />`);
+                selectedButton.insertAdjacentHTML('beforeend', `<img class="icon" src="assets/images/icon-incorrect.svg" />`);
 
-            
+                const correctButton = Array.from(answerButtons).find(btn => btn.textContent.includes(questionObj.answer));
+                correctButton.insertAdjacentHTML('beforeend', `<img class="icon" src="assets/images/icon-correct.svg" />`);
+            }
+        
             submitButton.textContent = 'Next Question';
-            answering = false;
         } else {
             
             currentQuestionIndex++;
