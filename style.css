@@ -159,6 +159,22 @@ h2{
 .question{
     font-size: 2.2rem;
 }
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background-color: var(--light-gray);
+    border-radius: 5px;
+    margin-top: 1rem;
+    position: relative;
+}
+
+.progress-fill {
+    width: 0%; /* Start at 0% and will increase */
+    height: 100%;
+    background-color: var(--purple);
+    border-radius: 5px;
+    transition: width 0.5s ease; /* Smooth transition as it fills */
+}
 .you-scored{
     font-weight: 500;
 }
@@ -481,5 +497,7 @@ h2{
         background-position: center;
         background-size: cover;
     }
-
+    .progress-bar{
+        margin-top: 15rem;
+    }
 }

@@ -51,11 +51,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             });
         });
-
+        function updateProgressBar() {
+            const totalQuestions = currentQuiz.questions.length;
+            const progressPercentage = ((currentQuestionIndex + 1) / totalQuestions) * 100;
+            document.querySelector('.progress-fill').style.width = `${progressPercentage}%`;
+        }
 
 function loadQuestion() {
     const questionObj = currentQuiz.questions[currentQuestionIndex];
     const totalQuestions = currentQuiz.questions.length;
+    updateProgressBar();
     const answerLetters = ['A', 'B', 'C', 'D'];
     const errorMessage = document.getElementById('error-message');
         errorMessage.classList.add('hidden-error');
@@ -105,6 +110,7 @@ function loadQuestion() {
     } else if (currentQuiz.title === 'Accessibility') {
         topCategoryIcon.classList.add('accessibility-icon');
     }
+    
 }
 
 
