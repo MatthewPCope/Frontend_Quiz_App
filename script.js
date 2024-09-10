@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentQuiz = {};
     let selectedAnswer = null;
     let score = 0
-    let answering = true;
+    
 
     // Load the quiz data
     fetch('data.json')
@@ -78,6 +78,7 @@ function loadQuestion() {
             button.classList.add('selected');
             selectedAnswer = questionObj.options[index];
         };
+        
     });
 
     // Reset the selected answer
