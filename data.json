@@ -22,7 +22,7 @@
                         "&lt;body&gt;&lt;head&gt;&lt;/head&gt;&lt;html&gt;&lt;/html&gt;&lt;/body&gt;",
                         "&lt;html&gt;&lt;body&gt;&lt;/body&gt;&lt;head&gt;&lt;/head&gt;&lt;/html&gt;"
                     ],
-                    "answer": "<html><head></head><body></body></html>"
+                    "answer": "&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;"
                 },
                 {
                     "question": "Which HTML element is used to define the title of a document?",
@@ -32,7 +32,7 @@
                         "&lt;header&gt;",
                         "&lt;top&gt;"
                     ],
-                    "answer": "<title>"
+                    "answer": "&lt;title&gt;"
                 },
                 {
                     "question": "What is the purpose of the <body> tag in HTML?",
@@ -52,7 +52,7 @@
                         "&lt;a&gt;",
                         "&lt;href&gt;"
                     ],
-                    "answer": "<a>"
+                    "answer": "&lt;a&gt;"
                 },
                 {
                     "question": "Which tag is used to display images in HTML?",
@@ -62,7 +62,7 @@
                         "&lt;src&gt;",
                         "&lt;pic&gt;"
                     ],
-                    "answer": "<img>"
+                    "answer": "&lt;img&gt;"
                 },
                 {
                     "question": "What attribute is used to provide the path of an image in the <img> tag?",
@@ -82,7 +82,7 @@
                         "&lt;list&gt;",
                         "&lt;li&gt;"
                     ],
-                    "answer": "<ul>"
+                    "answer": "&lt;ul&gt;"
                 },
                 {
                     "question": "What does the <br> tag do?",
@@ -340,7 +340,7 @@
                         "&lt;description&gt;",
                         "&lt;img alt='description'&gt;"
                     ],
-                    "answer": "<img alt='description'>"
+                    "answer": "&lt;img alt='description'&gt;"
                 },
                 {
                     "question": "What does ARIA stand for in web development?",
@@ -380,7 +380,7 @@
                         "&lt;a href='...'&gt;",
                         "&lt;p&gt;"
                     ],
-                    "answer": "<a href='...'>"
+                    "answer": "&lt;a href='...'&gt;"
                 },
                 {
                     "question": "What is the purpose of the 'lang' attribute in an HTML page?",
