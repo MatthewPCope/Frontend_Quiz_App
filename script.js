@@ -16,19 +16,19 @@ document.addEventListener('DOMContentLoaded', function() {
     let score = 0
     
 
-    // Load the quiz data
+
     fetch('data.json')
         .then(response => response.json())
         .then(data => {
             const quizzes = data.quizzes;
             
-            // Add click event listeners to each category button
+            
             categoryButtons.forEach(button => {
                 button.addEventListener('click', function() {
                     const category = this.textContent.trim();
                     currentQuiz = quizzes.find(quiz => quiz.title === category);
                     if (currentQuiz) {
-                        // Reset question index and load the first question
+                        
                         currentQuestionIndex = 0; 
                         answering = true;
                         score = 0
@@ -39,10 +39,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         categoryIcon.src = currentQuiz.icon;
                         categoryName.textContent = currentQuiz.title;
 
-                        // Show the category container and quiz page
+                        
                         categoryContainer.style.display = 'flex'; //
 
-                        // Hide the opening page and show the quiz page
+                        
                         openingPage.classList.add('hidden');
                         quizPage.classList.remove('hidden');
                     }else{
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
-// Function to load a question
+
 function loadQuestion() {
     const questionObj = currentQuiz.questions[currentQuestionIndex];
     const totalQuestions = currentQuiz.questions.length;
@@ -60,20 +60,20 @@ function loadQuestion() {
     const errorMessage = document.getElementById('error-message');
         errorMessage.classList.add('hidden-error');
 
-    // Update the title with the current question number and total questions
+    
     quizTitle.textContent = `Question ${currentQuestionIndex + 1} of ${totalQuestions}`;
     quizQuestion.textContent = questionObj.question;
 
-    // Ensure the buttons are fully reset before populating
+    
     answerButtons.forEach((button, index) => {
-        // Ensure the button is reset and ready to display the next set of answers
+        
         button.innerHTML = `
             <span class="letter-box">${answerLetters[index]}</span>
             <span class="answer-text">${questionObj.options[index]}</span>
         `;
-        button.classList.remove('selected', 'correct', 'wrong'); // Reset styles
+        button.classList.remove('selected', 'correct', 'wrong');
         button.onclick = () => {
-            // Allow only one selection at a time
+            
             answerButtons.forEach(btn => btn.classList.remove('selected'));
             button.classList.add('selected');
             selectedAnswer = questionObj.options[index];
@@ -81,20 +81,20 @@ function loadQuestion() {
         
     });
 
-    // Reset the selected answer
+    
     selectedAnswer = null;
-    submitButton.textContent = "Submit Answer"; // Reset button text
+    submitButton.textContent = "Submit Answer";
     submitButton.classList.remove('hidden');
     answering = true; 
 
-    // Update the top-left icon and category
+    
     const topCategoryIcon = document.getElementById('top-category-icon');
     const topCategoryName = document.getElementById('top-category-name');
     
     topCategoryIcon.src = currentQuiz.icon;
     topCategoryName.textContent = currentQuiz.title;
 
-    // Apply the dynamic background class for the icon
+    
     topCategoryIcon.classList.remove('html-icon', 'css-icon', 'javascript-icon', 'accessibility-icon');
     if (currentQuiz.title === 'HTML') {
         topCategoryIcon.classList.add('html-icon');
@@ -107,46 +107,46 @@ function loadQuestion() {
     }
 }
 
-// Function to handle answer submission and moving to the next question
+
 submitButton.addEventListener('click', function() {
     const errorMessage = document.getElementById('error-message');
 
-    // Check if no answer has been selected
+    
     if (!selectedAnswer) {
-        // Show the error message if no answer is selected
+        
         errorMessage.classList.remove('hidden-error');
     } else {
-        // Hide the error message once an answer is selected
+        
         errorMessage.classList.add('hidden-error');
         
         const questionObj = currentQuiz.questions[currentQuestionIndex];
         const selectedButton = document.querySelector('.selected');
 
         if (submitButton.textContent === 'Submit Answer') {
-            // Check if the selected answer is correct
+            
             if (selectedAnswer === questionObj.answer) {
-                selectedButton.classList.add('correct'); // Green for correct
-                score++; // Increase score if correct
+                selectedButton.classList.add('correct');
+                score++;
             } else {
-                selectedButton.classList.add('wrong'); // Red for wrong
+                selectedButton.classList.add('wrong');
             }
             
-            // Insert correct or incorrect icon based on the answer
+            
             const icon = selectedAnswer === questionObj.answer 
                 ? 'assets/images/icon-correct.svg' 
                 : 'assets/images/icon-incorrect.svg';
             selectedButton.insertAdjacentHTML('beforeend', `<img class="icon" src="${icon}" />`);
 
-            // Change button text to "Next Question"
+            
             submitButton.textContent = 'Next Question';
             answering = false;
         } else {
-            // Move to the next question or show the score if no more questions
+            
             currentQuestionIndex++;
             if (currentQuestionIndex < currentQuiz.questions.length) {
-                loadQuestion(); // Load the next question
+                loadQuestion();
             } else {
-                showScore(); // Show the score if quiz is finished
+                showScore();
             }
         }
     }
@@ -155,27 +155,27 @@ submitButton.addEventListener('click', function() {
 
 
 
-    // Function to show the score
+    
     function showScore() {
         quizPage.classList.add('hidden');
         const scorePage = document.getElementById('score-page');
         scorePage.classList.remove('hidden');
         
-        // Set the score display
+        
         const scoreNumber = document.querySelector('.score-number');
         const scoreText = document.querySelector('.score-text');
-        scoreNumber.textContent = `${score}`; // or use the actual score variable
+        scoreNumber.textContent = `${score}`;
         scoreText.textContent = ` out of ${currentQuiz.questions.length}`;
     
-        // Dynamically set category icon and name
+        
         const categoryIcon = document.getElementById('category-icon');
         const categoryName = document.getElementById('category-name');
         
-        categoryIcon.src = currentQuiz.icon;  // Assuming the JSON data includes the icon property
-        categoryName.textContent = currentQuiz.title;  // This will be the category name, like "HTML" or "CSS"
+        categoryIcon.src = currentQuiz.icon;
+        categoryName.textContent = currentQuiz.title;
         categoryIcon.classList.remove('html-icon', 'css-icon', 'javascript-icon', 'accessibility-icon');
 
-    // Add background color class based on category
+    
     if (currentQuiz.title === 'HTML') {
         categoryIcon.classList.add('html-icon');
     } else if (currentQuiz.title === 'CSS') {
@@ -193,36 +193,10 @@ submitButton.addEventListener('click', function() {
     });
 });
 
-
-
-// document.getElementById('start-button').addEventListener('click', startQuiz);
-// document.getElementById('restart-button').addEventListener('click', restartQuiz);
-
-// function startQuiz() {
-//     // Hide the opening page and show the quiz page
-//     document.getElementById('opening-page').classList.add('hidden');
-//     document.getElementById('quiz-page').classList.remove('hidden');
-// }
-
-// function showScore(score) {
-//     // Hide the quiz page and show the score page
-//     document.getElementById('quiz-page').classList.add('hidden');
-//     document.getElementById('score-page').classList.remove('hidden');
-
-//     // Display the score
-//     document.getElementById('score').textContent = `You scored: ${score}`;
-// }
-
-// function restartQuiz() {
-//     // Hide the score page and show the opening page
-//     document.getElementById('score-page').classList.add('hidden');
-//     document.getElementById('opening-page').classList.remove('hidden');
-// }
-
 document.addEventListener('DOMContentLoaded', function() {
     const toggle = document.getElementById('dark-mode-toggle');
 
-    // Add event listener for dark mode toggle
+    
     toggle.addEventListener('change', function () {
         if (this.checked) {
             document.body.classList.add('dark-mode');
@@ -233,7 +207,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Check for a saved user preference on page load
+    
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
         document.body.classList.add('dark-mode');

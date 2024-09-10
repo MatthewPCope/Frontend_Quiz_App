@@ -41,16 +41,7 @@
 html {
     font-size: 62.5%;
 }
-/* General styling for the background container */
 
-
-/* Default visibility for light mode images */
-
-
-/* When dark mode is activated, swap visibility */
-
-
-/* Keep the rest of your CSS unchanged */
 body {
     background-color: var(--background-color);
     font-family: "Rubik", sans-serif;
@@ -72,8 +63,6 @@ body.dark-mode {
     color: var(--text-color);
 }
 
-
-/* Toggle switch and icon styling */
 .toggle-container {
     display: flex;
     align-items: center;
@@ -146,6 +135,9 @@ input[type="checkbox"]:checked + .switch::after {
 .visible {
     display: block;
 }
+.subheading{
+    font-size: 1.6rem;
+}
 #quiz-page{
     margin-top: 10rem;
 }
@@ -181,8 +173,7 @@ h2{
     flex-direction: column;
     gap: 2.4rem;
 }
-.btn, .btn:link, .btn:visited,
-.answer-btn, .answer-btn:link, .answer-btn:visited{
+.btn{
     width: 100%;
     font-size: 2rem;
     background-color: var(--button-color);
@@ -206,7 +197,9 @@ h2{
 .answer-btn:active{
     border-color: var(--purple);
 }
-
+.answer-btn.selected {
+    border: 2px solid var(--purple);
+}
 .answer-btn{
     width: 100%;
     font-size: 2rem;
@@ -228,18 +221,18 @@ h2{
     gap: 2rem;
     color: inherit;
 }
-/* Correct and wrong icons positioned on the right side */
+
 .answer-btn .icon {
     width: 24px;
     height: 24px;
     margin-left: 1rem;
 }
 .answer-btn.correct .icon {
-    content: url('assets/images/icon-correct.svg'); /* Correct answer icon */
+    content: url('assets/images/icon-correct.svg');
 }
 
 .answer-btn.wrong .icon {
-    content: url('assets/images/icon-incorrect.svg'); /* Wrong answer icon */
+    content: url('assets/images/icon-incorrect.svg');
 }
 .letter-box{
     display: inline-block;
@@ -250,32 +243,30 @@ h2{
     margin-right: 1.6rem;
     transition: background-color 0.3s ease;
     color: var(--light-gray);
-    background-color: var(--off-white); /* Light gray background for letter box */
+    background-color: var(--off-white);
     border-radius: 4px;
     font-weight: bold;
 }
 .answer-text {
-    flex-grow: 1; /* Ensure the text takes up available space */
+    flex-grow: 1;
     text-align: left;
     display: inline-block;
     color: var(--text-color);
     margin-left: 1rem;
 }
 .answer-btn.selected .letter-box {
-    background-color: var(--purple); /* Purple for selected answer */
+    background-color: var(--purple);
     color: white;
 }
 .answer-btn.correct{
     border: 2px solid var(--green);
 }
 
-/* Correct answer background (green) */
 .answer-btn.correct .letter-box {
     background-color: var(--green);
     color: white;
 }
 
-/* Wrong answer background (red) */
 .answer-btn.wrong .letter-box {
     background-color: var(--red);
     color: white;
@@ -310,7 +301,7 @@ h2{
     color: var(--text-color);
     font-size: 1.6rem;
     margin-top: 1rem;
-    gap: 10px; /* Space between the icon and text */
+    gap: 10px;
 }
 
 .error-message img {
@@ -370,29 +361,28 @@ h2{
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px; /* Space between the icon and the text */
+    gap: 10px;
     margin-top: 1.8rem;
     margin-bottom: 1.8rem;
 }
 
 .score-category img {
-    width: 4rem; /* Adjust the size of the icon as needed */
+    width: 4rem;
     height: auto;
     align-items: center;
 }
 .score-number {
-    font-size: 6rem; /* Make the score number large */
+    font-size: 6rem;
     font-weight: bold;
-    color: var(--strong); /* Adjust this color based on your theme */
+    color: var(--strong);
     margin-bottom: 1.8rem;
 }
 
 .score-text {
-    font-size: 1.5rem; /* Make the text smaller */
-    color: var(--blueish); /* Adjust this color based on your theme */
+    font-size: 1.5rem;
+    color: var(--blueish); 
     margin-bottom: 3.6rem;
 }
-
 
 .top-left-container {
     position: absolute;
@@ -407,17 +397,14 @@ h2{
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px; /* Space between the icon and the text */
+    gap: 10px;
 }
 .top-category img {
-    width: 4rem; /* Adjust the size of the icon as needed */
+    width: 4rem;
     height: auto;
     align-items: center;
 }
 
-
-
-/* Adjustments to the icon styling for the dynamic category icon */
 .top-left-container img.html-icon {
     background-color: #fff2e9;
     border-radius: 8px;
